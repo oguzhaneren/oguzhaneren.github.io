@@ -1,12 +1,12 @@
 {
   "title": "oe",
-  "url": "https://oguzhaneren.github.io/",
+  "url": "https://www.oguzh4n.net/",
   "description": "my blog bounded context",
   "feed": {
     "subtitle": "my blog bounded context",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://oguzhaneren.github.io/"
+    "id": "https://www.oguzh4n.net/"
   },
   "author": {
     "name": "Oğuzhan Eren",
