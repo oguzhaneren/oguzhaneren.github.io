@@ -7,11 +7,13 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Build
-        uses: cagov/actions-eleventy@v1.3.1
+        uses: TartanLlama/actions-eleventy@v1.1
+        with:
+          args: --output _site
+          install_dependencies: true
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v1.1.0
         env:
-          PUBLISH_DIR: _site
-          INPUT_INSTALL_DEPENDENCIES: "true"
+          PUBLISH_DIR: ""
           PUBLISH_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
