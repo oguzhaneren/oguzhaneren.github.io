@@ -5,16 +5,14 @@ on:
       - dev
 jobs:
   build_deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@master
-
       - name: Build
-        uses: TartanLlama/actions-eleventy@v1.2
-
+        uses: cagov/actions-eleventy@v2.0
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _site
-          publish_branch: master
+        uses: peaceiris/actions-gh-pages@v1.1.0
+        env:
+          PUBLISH_DIR: _site
+          PUBLISH_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
