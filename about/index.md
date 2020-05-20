@@ -1,10 +1,12 @@
 ---
 layout: layouts/post.njk
-title: About Me
+title: Hakkımda
 templateClass: tmpl-post
 eleventyNavigation:
-  key: About Me
+  key: Hakkımda
   order: 3
 ---
 
-I am a person that writes stuff.
+Oğuzhan Eren | Software Developer
+
+

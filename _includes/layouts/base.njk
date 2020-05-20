@@ -1,29 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ renderData.title or title or metadata.title }}</title>
-    <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
-    <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
-    <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
-
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-32257874-1', 'oguzh4n.net');
-        ga('send', 'pageview');
-
-    </script>
-    <script src="https://apis.google.com/js/platform.js" async defer>
-    { lang: 'tr' }
-    </script>
+    {% include "layouts/headers.njk" %}
   </head>
   <body>
     <header>
@@ -53,5 +31,6 @@
     <footer></footer>
 
     <!-- Current page: {{ page.url | url }} -->
+  {% include "layouts/trackers.njk" %}
   </body>
 </html>

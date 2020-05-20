@@ -1,0 +1,14 @@
+{
+     "files.exclude": {
+       ".github":true,
+       "_site":true,
+         "node_modules":true,
+         ".gitattributes":true,
+        "package-lock.json":true,
+        "dist":true,
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/*.js.map": true,
+    },
+    "tslint.autoFixOnSave": true,
+}
