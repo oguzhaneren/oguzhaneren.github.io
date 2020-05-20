@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CQRS Nedir?</title>
+    <meta name="Description" content="CQRS CQS prensibinden türemiştir. Bu nedenle önce CQS&#39;i açıklayalım.">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="oe">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/">oe</a></h1>
+      <ul class="nav">
+        <li class="nav-item"><a href="/">Home</a></li>
+        <li class="nav-item"><a href="/posts/">Archive</a></li>
+        <li class="nav-item"><a href="/about/">About Me</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <div class="warning hidden">
+        <ol>
+          <li>Edit the <code>_data/metadata.json</code> with your blog’s information.</li>
+          <li>(Optional) Edit <code>.eleventy.js</code> with your <a href="https://www.11ty.dev/docs/config/">configuration preferences</a>.</li>
+          <li>Delete this message from <code>_includes/layouts/base.njk</code>.</li>
+        </ol>
+        <p><em>This is an <a href="https://www.11ty.io/">Eleventy project</a> created from the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
+      </div>
+
+      <h1>CQRS Nedir?</h1>
+
+<p>CQRS CQS prensibinden türemiştir. Bu nedenle önce CQS'i açıklayalım.</p>
+<h4 id="command-query-separation"><a href="http://martinfowler.com/bliki/CommandQuerySeparation.html">Command Query Separation</a> <a class="direct-link" href="#command-query-separation">#</a></h4>
+<p>Bu prensibe göre bir nesnenin metodları Command ve Query olarak ikiye ayrılmalıdır. Bir metod bir nesne üzerinde değişiklik yaparak geriye sonuç döndürmemelidir.</p>
+<ul>
+<li><strong>Command</strong> : Nesnenin durumunu değiştirir fakat geriye sonuç dönmez.</li>
+<li><strong>Query</strong>: Sonuç döndürür fakat nesnenin durumunu değiştirmez.</li>
+</ul>
+<p>Bu prensib metodların ne yaptığını, ne yapmadığını ve neyi değiştirdiğini anlamak için fayda sağlar.</p>
+<h4 id="cqrs">CQRS <a class="direct-link" href="#cqrs">#</a></h4>
+<p>CQRS &quot;Command-query responsibility segregation&quot; anlamına gelir. Command(yazma) ve Query(okuma) olarak davranışların ayrılmasıdır.<br>
+Command ve Query farklı iki nesne tarafından ele alınırlar.</p>
+<p>Genelde servis tanımları aşağıdaki gibidir:</p>
+<pre class="language-csharp"><code class="language-csharp">	ProductService<br>		<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddProduct</span><span class="token punctuation">(</span>productId<span class="token punctuation">,</span>name<span class="token punctuation">)</span><br>		<span class="token return-type class-name">Product</span> <span class="token function">GetProduct</span><span class="token punctuation">(</span>productId<span class="token punctuation">)</span><br>		<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">DisableProduct</span><span class="token punctuation">(</span>productId<span class="token punctuation">)</span><br>		<span class="token return-type class-name">Product<span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">GetAllProducts</span><span class="token punctuation">(</span>categoryId<span class="token punctuation">)</span></code></pre>
+<p>Yukarıdaki servise CQRS uygulandığında sonuçta okuma ve yazma olarak iki servis elde ederiz:</p>
+<pre class="language-csharp"><code class="language-csharp">	ProductCommandService<br>		<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddProduct</span><span class="token punctuation">(</span>productId<span class="token punctuation">,</span>name<span class="token punctuation">)</span><br>		<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">DisableProduct</span><span class="token punctuation">(</span>productId<br><br>	ProductReadService<br>		<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddProduct</span><span class="token punctuation">(</span>productId<span class="token punctuation">,</span>name<span class="token punctuation">)</span><br>		<span class="token return-type class-name">Product<span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">GetAllProducts</span><span class="token punctuation">(</span>categoryId<span class="token punctuation">)</span></code></pre>
+<p>Bu yaklaşımı daha ileriye taşıyarak Command ve Query için kullanılacak veritabanlarınıda ayırabiliriz.<br>
+Bu işlem yapıldığında, okuma işlemleri için optimize edilmiş birden fazla verimodeli ve veritabanı kullanılabilir.<br>
+Okuma ve yazma veritabanlarını ayırmak CQRS ile ilişkilidir ve CQRS'in kendisi değildir, CQRS sadece okuma ve yazma işlemlerini ayırmaktır.</p>
+<p>CQRS ilgili önemli ve ilginç olan nokta ne zaman, nerde ve nasıl kullanılacağıdır.<br>
+Bu yaklaşımı kullanmak, ölçeklenebilirlik, karmaşıklığı ve değişen iş kurallarını yönetebilmek gibi mimari sorunları daha geniş bir yelpazede çözmek için olanak sağlar.<br>
+CQRS bir mimari şablon değildir, tüm sistem düzeyinde uygulanmak yerine birden çok katılımıcının olduğu domainlerde (collaborative domain) ve ölçeklenebilirliğin önemli olduğu Bounded Context'lerde uygulanmalıdır.</p>
+<p>Bir sonraki yazımda CQRS'in ne için uygulanması gerektiği ve hangi sorunları çözdüğünden bahsediyor olacağım.</p>
+
+
+<p><a href="/">← Home</a></p>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/cqrs-nedir/ -->
+  </body>
+</html>
