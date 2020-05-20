@@ -47,7 +47,7 @@ CQRS bir mimari şablon değildir, tüm sistem düzeyinde uygulanmak yerine bird
 		<link href="https://www.oguzh4n.net/posts/helloworld/"/>
 		<updated>2020-04-10T00:00:00-00:00</updated>
 		<id>https://www.oguzh4n.net/posts/helloworld/</id>
-		<content type="html">&lt;p&gt;Hello world post from static content generator :)&lt;/p&gt;
+		<content type="html">&lt;p&gt;Hello world post new static blog&lt;/p&gt;
 </content>
 	</entry>
 </feed>
