@@ -227,3 +227,11 @@ a[href].direct-link:focus:visited,
 .hidden {
   display:none!important;
 }
+
+
+.e-mail:before {
+  content: attr(data-domain) "\0040" attr(data-local);
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+
