@@ -10,6 +10,9 @@
   },
   "author": {
     "name": "Oğuzhan Eren",
-    "email": "oguzh4n@gmail.com"
+    "email":  {
+      "local":"oguzh4n",
+      "domain":"gmail.com"
+    }
   }
 }
