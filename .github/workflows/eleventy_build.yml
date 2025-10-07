@@ -1,19 +1,17 @@
 name: Eleventy Build
-on:
-  push:
-    branches:
-      - dev
+on: [push]
+
 jobs:
   build_deploy:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@master
       - name: Build
-        uses: cagov/actions-eleventy@2.0
+        uses: TartanLlama/actions-eleventy@master
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           PUBLISH_DIR: _site
-          PUBLISH_BRANCH: master
+          PUBLISH_BRANCH: gh-pages
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           cname: www.oguzh4n.net
