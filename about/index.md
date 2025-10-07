@@ -8,7 +8,6 @@ eleventyNavigation:
   order: 3
 ---
 
-İstanbul'da yaşıyorum, Trendyol'da yazılım geliştirici olarak çalışmaktayım.
 
 İlgi duyduğum ve çalıştığım konular:
 
