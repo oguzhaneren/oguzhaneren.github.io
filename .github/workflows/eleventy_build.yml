@@ -4,16 +4,19 @@ on:
     branches:
       - dev
 jobs:
-  build_deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Build
-        uses: cagov/actions-eleventy@2.0
+      - name: Build 11ty
+        uses: cagov/actions-eleventy@3.1
+        with:	
+          build_task: build 
+          build_eleventy_args: --formats=html,njk --input ./pages --output ./docs	
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          PUBLISH_DIR: _site
+        uses: peaceiris/actions-gh-pages@v1.1.0
+        env:
+          PUBLISH_DIR: _site 
           PUBLISH_BRANCH: gh-pages
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           cname: www.oguzh4n.net
